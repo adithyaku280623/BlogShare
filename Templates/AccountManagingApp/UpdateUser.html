@@ -1,0 +1,88 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}Update Profile{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/AccountManagingApp/UpdateUser.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <form method="post" class="auth-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-header d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-purple m-0">Update Profile</h2>
+            <a href="{% url 'MyAccount' %}" class="btn-close" aria-label="Close"></a>
+        </div>
+
+
+        <!-- Profile Picture Upload -->
+        <label class="form-label fw-semibold">Profile Picture</label>
+        <div class="profile-pic-wrapper mb-4">
+            <img id="imagePreview"
+                 src="{% if request.user.profile_picture %}{{ request.user.profile_picture.url }}{% else %}{% static 'images/default-profile.png' %}{% endif %}"
+                 alt="Profile Preview"/>
+
+            <!-- Camera icon overlay -->
+            <label for="fileInput" class="overlay-icon">
+                <i class="fa-solid fa-camera"></i>
+            </label>
+
+            <input type="file" id="fileInput" name="profile_picture" accept="image/*" style="display:none;">
+        </div>
+
+        <!-- Username -->
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" id="username" class="form-control" value="{{ request.user.username }}">
+        </div>
+
+        <!-- First Name -->
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" name="first_name" id="first_name" class="form-control"
+                   value="{{ request.user.first_name }}">
+        </div>
+
+        <!-- Last Name -->
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" name="last_name" id="last_name" class="form-control"
+                   value="{{ request.user.last_name }}">
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" id="email" class="form-control" value="{{ request.user.email }}">
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone No:</label>
+            <input type="tel" name="phone" id="phone" class="form-control" value="{{ request.user.phone }}">
+        </div>
+
+        <!-- Password Update -->
+        <div class="mb-3">
+            <label for="password" class="form-label">Current Password</label>
+            <input type="password" name="password" id="password" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="newpass" class="form-label">New Password</label>
+            <input type="password" name="newpass" id="newpass" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="newpassconfirm" class="form-label">Confirm New Password</label>
+            <input type="password" name="newpassconfirm" id="newpassconfirm" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-confirm w-100">Update</button>
+    </form>
+</div>
+
+{% block extra_js %}
+<script src="{% static 'JS/AccountManagingApp/UpdateUser.JS' %}"></script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'BASE.html' %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="form-box p-4">
+        <h2 class="text-center mb-4">Verify OTP</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% if messages %}
+            <div class="mt-2">
+                {% for message in messages %}
+                <div style="color: #0d6efd; font-weight:bold;">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <div class="mb-3">
+                <label>Enter OTP</label>
+                <input type="text" name="otp" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>New Password</label>
+                <input type="password" name="new_password" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm_password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-confirm">Reset Password</button>
+
+
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}Delete Post{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/BlogManagingApp/DeletePost.CSS' %}">
+{% endblock %}
+
+{% block content %}
+<div class="delete-post-wrapper">
+    <div class="delete-post-card">
+        <!-- Heading -->
+        <h2 class="delete-title">Confirm Deletion</h2>
+        <p class="delete-subtitle">Are you sure you want to delete this post?</p>
+
+        <!-- Post Info -->
+        <div class="delete-post-info">
+            <h3 class="post-title">{{ post.title }}</h3>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+            {% endif %}
+        </div>
+
+        <!-- Actions -->
+        <form method="post" class="delete-actions">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger">Yes, Delete</button>
+            <a href="{% url 'PostDetail' post.id %}" class="btn btn-outline-info">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

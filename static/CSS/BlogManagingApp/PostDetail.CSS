@@ -1,0 +1,56 @@
+.post-detail-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* left = bigger image area, right = details */
+    height: 85vh;
+    margin: 20px auto;
+
+}
+
+.post-image-container {
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    justify-content:left;
+    align-items: center;
+    padding: 25px;
+}
+
+.post-image {
+    max-width: 100%;
+    max-height: 80vh; /* stops image from pushing content out */
+    object-fit: contain; /* keeps aspect ratio */
+    border-radius: 10px;
+}
+
+
+/* Right side (details) */
+.post-info {
+    border-radius:10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+}
+
+.post-info h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.post-info p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color:bLue;
+}
+
+.post-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.post-actions .btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+}

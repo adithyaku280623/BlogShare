@@ -1,0 +1,105 @@
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.search-bar input {
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.search-bar button {
+    border-radius: 6px;
+}
+
+.post-image img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 50px;
+    margin-bottom:50px;
+}
+
+.post-image-placeholder {
+    border-radius: 8px;
+    height: 250px;
+}
+
+.post-comments {
+    margin-top: 10px;  /* smaller spacing */
+    padding-top: 0;    /* remove extra padding */
+}
+
+
+.comments-toggle {
+    font-weight: 500;
+    cursor: pointer;
+    margin-top:200px;
+}
+
+.comment-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.comment-actions form {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.comment-edit-input {
+    border-radius: 4px;
+    border: 1px solid #555;
+}
+
+.comment-actions button {
+    font-size: 0.75rem;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.comment-add-input {
+    border-radius: 6px;
+    border: 1px solid;
+}
+
+/* --- Pagination --- */
+.pagination-nav {
+    margin-top: 40px;
+}
+
+.pagination .page-item .page-link {
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin: 0 2px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color:blue;
+    color: #fff;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 5%;
+    }
+    .comment-actions {
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 4px;
+    }
+    .comment-edit-input {
+        width: 100px;
+    }
+}

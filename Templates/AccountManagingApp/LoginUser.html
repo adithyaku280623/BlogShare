@@ -1,0 +1,40 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container d-flex justify-content-center align-items-center vh-100">
+    <div class="form-box p-4">
+        <h2 class="text-center mb-4">Login</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-confirm">
+                LOGIN
+            </button>
+
+            <div class="text-center mt-3">
+                <p class="redirect-text">Don’t have an account?
+                    <a href="{% url 'RegisterUser' %}">Register</a>
+                </p>
+                <p class="mt-2">
+                    <a href="{% url 'ForgotPassword' %}">Forgot your password?</a>
+                </p>
+
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

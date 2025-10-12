@@ -1,0 +1,82 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/AccountManagingApp/RegisterUser.CSS' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <form method="post" class="auth-form" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <h2 class="text-center mb-4 text-purple">Create Account</h2>
+
+        <!-- Profile Picture Upload -->
+        <label class="form-label fw-semibold">Profile Picture</label>
+        <div class="profile-pic-wrapper">
+            <!-- Always show default image for new registration -->
+            <img id="imagePreview"
+                 src="{% static 'images/default-profile.png' %}"
+                 alt="Profile Preview"/>
+
+            <!-- Camera icon overlay -->
+            <label for="fileInput" class="overlay-icon">
+                <i class="fa-solid fa-camera"></i>
+            </label>
+
+            <input type="file" id="fileInput" name="profile_picture" accept="image/*" style="display:none;">
+        </div>
+
+
+        <!-- Rest of Form -->
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <input type="text" id="first_name" name="first_name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <input type="text" id="last_name" name="last_name" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone No:</label>
+            <input type="tel" id="phone" name="phone" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="cpassword" class="form-label">Confirm Password</label>
+            <input type="password" id="cpassword" name="cpassword" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-confirm w-100">Register</button>
+
+        <div class="text-center mt-3">
+            <p class="redirect-text">Already have an account?
+                <a href="{% url 'LoginUser' %}" >Login</a>
+            </p>
+        </div>
+    </form>
+</div>
+{% block extra_js %}
+<script src="{% static 'JS/AccountManagingApp/RegisterUser.JS' %}"></script>
+{% endblock%}
+{% endblock %}

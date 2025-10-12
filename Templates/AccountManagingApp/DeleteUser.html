@@ -1,0 +1,25 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}Delete Account{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/AccountManagingApp/DeleteUser.CSS' %}">
+{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <div class="delete-card">
+        <h2>Delete Account</h2>
+        <p>Are you sure you want to permanently delete your account?</p>
+        <p class="warning">This action cannot be undone.</p>
+        <form method="post">
+            {% csrf_token %}
+            <div class="btn-group">
+                <a href="{% url 'MyAccount' %}" class="cancel-btn">Cancel</a>
+                <button type="submit" class="delete-btn">Delete Account</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

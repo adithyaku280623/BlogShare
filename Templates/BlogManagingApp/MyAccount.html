@@ -1,0 +1,89 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}My Account{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/BlogManagingApp/MyAccount.CSS' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex">
+    <div class="l-navbar position-fixed" id="nav-bar">
+        <!-- Username -->
+        <h5 class="nav_logo-name">{{ user.username }}</h5>
+
+        <!-- Profile Picture -->
+        {% if user.profile_picture %}
+        <div class="profile-pic-wrapper">
+            <img src="{{ request.user.profile_picture.url }}" class="profile-pic" alt="Profile">
+        </div>
+        {% else %}
+        <div class="profile-pic-wrapper empty-pic">
+            <i class="bi bi-person-fill"></i>
+        </div>
+        {% endif %}
+
+
+        <!-- Navigation Links -->
+        <nav class="nav">
+            <div class="nav_list">
+                <a href="{% url 'HomePage' %}" class="nav_link">
+                    <i class='bx bx-grid-alt nav_icon'></i>
+                    <span class="nav_name">Home Page</span>
+                </a>
+                <a href="{% url 'CreatePost' %}" class="nav_link">
+                    <i class='bx bx-plus-circle nav_icon'></i>
+                    <span class="nav_name">New Post</span>
+                </a>
+                <a href="{% url 'UpdateUser' %}" class="nav_link">
+                    <i class='bx bx-user nav_icon'></i>
+                    <span class="nav_name">Update Profile</span>
+                </a>
+                <a href="{% url 'DeleteUser' %}" class="nav_link">
+                    <i class='bx bx-trash nav_icon'></i>
+                    <span class="nav_name">Delete Account</span>
+                </a>
+                {% if request.user.is_superuser %}
+                <hr class="admin-divider">
+                <h6 class="admin-title">Administrators Only</h6>
+                <a href="{% url 'AdminUserManagement' %}" class="nav_link admin-link">
+                    <i class='bx bx-user-check nav_icon'></i>
+                    <span class="nav_name">User Management</span>
+                </a>
+                <a href="{% url 'AdminPostManagement' %}" class="nav_link admin-link">
+                    <i class='bx bx-news nav_icon'></i>
+                    <span class="nav_name">Post Management</span>
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Logout Button at bottom -->
+            <a href="{% url 'LogoutUser' %}" class="nav_link logout-btn">
+                <i class='bx bx-log-out nav_icon'></i>
+                <span class="nav_name">Log Out</span>
+            </a>
+        </nav>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4" style="margin-left:250px;">
+    </div>
+    <div class="posts-grid">
+        {% for post in posts %}
+        <a href="{% url 'PostDetail' post.id %}" class="insta-post">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            {% endif %}
+        </a>
+        {% empty %}
+        <p class="no-posts-msg">
+            NO POSTS YET... HOW ABOUT CREATING A NEW ONE?
+            <a href="{% url 'CreatePost' %}">Create Post</a>
+        </p>
+        {% endfor %}
+
+    </div>
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/BlogManagingApp/PostDetail.CSS' %}">
+{% endblock %}
+
+{% block content %}
+<div class="post-detail-container">
+
+    <!-- Left: Image on white canvas -->
+    <div class="post-image-container">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" class="post-image">
+        {% else %}
+            <div class="no-image">No Image</div>
+        {% endif %}
+    </div>
+
+    <!-- Right: Post details -->
+    <div class="post-info ">
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.subject }}</p>
+        <p>{{ post.content }}</p>
+        <div class="post-actions">
+            <p class="text-muted">By: {{ post.user.username }} | {{ post.created_at|date:"M d, Y" }}</p>
+            <a href="{% url 'EditPost' post.id %}" class="btn btn-outline-primary">Edit Post</a>
+            <a href="{% url 'DeletePost' post.id %}" class="btn btn-outline-danger">Delete Post</a>
+            <a href="{% url 'MyAccount' %}" class="btn btn-outline-secondary">Go Back</a>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}

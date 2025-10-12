@@ -1,0 +1,66 @@
+.delete-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-card {
+    background: #111827;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 420px;
+    width: 90%;
+}
+
+
+.delete-card p {
+    color: #d1d5db;
+    margin-bottom: 10px;
+}
+
+.delete-card .warning {
+    color: #f87171;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.cancel-btn, .delete-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.cancel-btn {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+
+.cancel-btn:hover {
+    background-color: #4b5563;
+}
+
+.delete-btn {
+    background-color: #dc2626;
+    color: #fff;
+    border: none;
+}
+
+.delete-btn:hover {
+    background-color: #b91c1c;
+    transform: scale(1.05);
+}

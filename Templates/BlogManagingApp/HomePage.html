@@ -1,0 +1,153 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/BlogManagingApp/HomePage.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="page-header d-flex align-items-center justify-content-between mb-5">
+    <h1 class="page-title">Blog Feed</h1>
+
+    <!-- Search -->
+    <form method="get" class="search-bar d-flex ">
+        {% csrf_token %}
+        <input type="text" class=" dark-input" name="q" placeholder="🔍 Search posts..."
+               value="{{ query|default:'' }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Account -->
+    <a href="{% url 'MyAccount' %}" class="btn btn-primary">My Account</a>
+</header>
+
+<!-- Post Section -->
+<div class="feed-container container">
+    {% if posts %}
+    {% for post in posts %}
+    <article class="post-card card mb-5 shadow-sm p-3">
+        <div class="row g-4 align-items-start">
+
+            <!-- Left: Post Details -->
+            <div class="col-md-7 d-flex flex-column">
+                <div class="post-body flex-grow-1">
+                    <h2>{{ post.title }}</h2>
+                    <h5>Subject : {{ post.subject }}</h5>
+                    <p class="text-muted">BY : {{ post.user.username }}</p>
+                    <p class="post-content">{{ post.content }}</p>
+                </div>
+
+                <!-- Comments Section -->
+                <div class="post-comments mt-4 pt-3">
+                    <!-- Toggle Title -->
+                    <h6 class="  mb-2 comments-toggle" data-bs-toggle="collapse"
+                        data-bs-target="#comments-{{ post.id }}" aria-expanded="false"
+                        aria-controls="comments-{{ post.id }}" style="cursor:pointer;">
+                        💬 Comments ({{ post.comments.count }})
+                    </h6>
+
+                    <!-- Collapsible Comments -->
+                    <div class="collapse" id="comments-{{ post.id }}">
+                        <div class=" mt-2">
+                            {% for comment in post.comments.all %}
+                            <div class="comment-item d-flex justify-content-between align-items-start mb-2">
+                                <!-- Comment Text -->
+                                <div class="comment-text-area">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <strong class="comment-user">{{ comment.user.username }}
+                                            <small> {{comment.created_at|date:"M d, Y H:i" }} </small></strong>
+
+                                    </div>
+                                    <p class="comment-text mb-0">{{ comment.text }}</p>
+                                </div>
+
+                                <!-- Edit/Delete Buttons (only for comment owner) -->
+                                {% if user == comment.user %}
+                                <div class="comment-actions d-flex gap-2">
+                                    <form method="post" action="{% url 'HomePage' %}" class="d-flex align-items-center">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                        <input type="text" name="text" value="{{ comment.text }}"
+                                               class="comment-edit-input">
+                                        <button type="submit" class="btn btn-primary" name="action"
+                                                value="edit_comment">save
+                                        </button>
+                                    </form>
+                                    <!-- Delete Button -->
+                                    <form method="post" action="{% url 'HomePage' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="comment_id" value="{{ comment.id }}">
+                                        <button type="submit" class="btn btn-sm btn-danger" name="action"
+                                                value="delete_comment">Delete
+                                        </button>
+                                    </form>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                            {% empty %}
+                            <p class="text-muted small">No comments yet.</p>
+                            {% endfor %}
+
+                        </div>
+
+
+                    </div>
+                    <!-- Add Comment Form -->
+                    <form method="post" action="{% url 'HomePage' %}" class="comment-form mt-2 d-flex gap-2">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{ post.id }}">
+                        <input type="text" class="comment-add-input flex-grow-1" name="text"
+                               placeholder=" Write a comment...">
+                        <button class="btn btn-primary" type="submit" name="action" value="comment">Post</button>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <!-- Right: Post Image -->
+            <div class="col-md-5">
+                {% if post.image %}
+                <div class="post-image">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid post-img">
+                </div>
+                {% else %}
+                <div class="post-image-placeholder d-flex align-items-center justify-content-center bg-light"
+                     style="height:250px;">
+                    <span class="text-muted">No Image</span>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </article>
+    {% endfor %}
+    {% else %}
+    <p class="text-center text-muted">No posts found.</p>
+    {% endif %}
+</div>
+
+<!-- Pagination -->
+<nav class="pagination-nav mt-5" aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if posts.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+        {% endif %}
+
+        <li class="page-item active"><span class="page-link">{{ posts.number }}</span></li>
+
+        {% if posts.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endblock %}

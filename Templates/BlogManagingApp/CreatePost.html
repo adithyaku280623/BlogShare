@@ -1,0 +1,55 @@
+{% extends 'BASE.html' %}
+{% load static %}
+
+{% block title %}Create Post{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/BlogManagingApp/CreatePost.CSS' %}">
+{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center">
+    <form method="post" enctype="multipart/form-data" class="create-post-form">
+        {% csrf_token %}
+        <div class="form-header d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-purple m-0">Create New Post</h2>
+            <a href="{% url 'MyAccount' %}" class="btn-close" aria-label="Close"></a>
+        </div>
+
+
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" id="title" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <textarea class="form-control" name="subject" id="subject" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">Content</label>
+            <textarea class="form-control" name="content" id="content" rows="4" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Upload Image</label>
+            <input type="file" class="form-control" name="image" id="image" accept="image/*">
+            <div class="mb-3 image-preview-wrapper">
+            <img id="imagePreview" src="{% static 'images/default-preview.png' %}" alt="Image Preview">
+        </div>
+        </div>
+          <!-- Image Preview -->
+
+
+        <button type="submit" class="btn btn-confirm w-100">Publish</button>
+    </form>
+</div>
+{% block extra_js %}
+<script src="{% static 'JS/BlogManagingApp/CreatePost.JS' %}"></
+
+{% endblock %}
+{% endblock %}
+
+
