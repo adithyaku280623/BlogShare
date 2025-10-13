@@ -2,13 +2,16 @@
 {% load static %}
 
 {% block title %}Login{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'CSS/AccountManagingApp/LoginUser.CSS' %}">
+{% endblock %}
 
 {% block content %}
 <div class="login-container d-flex justify-content-center align-items-center vh-100">
     <div class="form-box p-4">
         <h2 class="text-center mb-4">Login</h2>
 
-        <form method="post">
+        <form method="post" autocomplete="off">
             {% csrf_token %}
 
             <div class="mb-3">

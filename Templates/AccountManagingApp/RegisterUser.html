@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="d-flex justify-content-center align-items-center">
-    <form method="post" class="auth-form" enctype="multipart/form-data">
+    <form method="post" class="auth-form" enctype="multipart/form-data" autocomplete="off">
         {% csrf_token %}
 
         <h2 class="text-center mb-4 text-purple">Create Account</h2>

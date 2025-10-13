@@ -1,0 +1,89 @@
+.profile-pic-wrapper {
+    width: 150px;
+    height: 150px;
+    margin: 15px auto 25px;
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #0d6efd;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.profile-pic-wrapper:hover {
+    transform: scale(1.03);
+}
+
+/* Profile Image */
+.profile-pic-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+}
+
+/* Overlay with Camera Icon */
+.overlay-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 28px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.profile-pic-wrapper:hover .overlay-icon {
+    opacity: 1;
+}
+.auth-form {
+    background: #fff;
+    padding: 50px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 650px;
+    max-width: 90%;
+    transition: 0.3s ease-in-out;
+}
+
+.auth-form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+.redirect-text {
+    margin-top: 25px;
+    color: #555;
+    font-size: 15px;
+    text-align: center;
+}
+
+.error {
+    color: #d9534f;
+    font-size: 13px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .auth-form {
+        width: 95%;
+        padding: 30px 20px;
+    }
+    .auth-form h2 {
+        font-size: 22px;
+    }
+    .form-control {
+        font-size: 14px;
+        padding: 12px;
+    }
+}

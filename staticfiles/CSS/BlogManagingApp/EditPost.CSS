@@ -1,0 +1,128 @@
+.post-detail-wrapper {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 2rem;
+    width: 90%;       /* wider form */
+    max-width: 1400px;
+    margin: 2rem auto;
+}
+
+
+/* Exit button inside form top-right corner */
+.exit-btn {
+    position: absolute;   /* relative to form */
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 50%;
+    text-decoration: none;
+    z-index: 100;
+    transition: background 0.2s;
+}
+
+.exit-btn:hover {
+    background-color: rgba(0,0,0,0.9);
+    color: #fff;
+}
+
+
+/* Bottom: Image + Right-side form */
+.post-bottom-section {
+    display: flex;
+    gap: 2rem;
+}
+
+/* Image Card */
+.post-image-card {
+    position: relative;
+    width: 50%;   /* left half */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.post-image-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Overlay camera icon */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.post-image-card:hover .image-overlay {
+    opacity: 1;
+}
+
+/* Right side: form */
+.post-detail-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.post-detail-info .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.post-detail-info label {
+    color: black;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.post-detail-info .form-control {
+    color: black;
+    border: 1px solid #1e1e2e;
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+
+/* Button */
+.btn-confirm {
+    background-color: #1e1e2e;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.btn-confirm:hover {
+    background-color: #580a9c;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+    .post-bottom-section {
+        flex-direction: column;
+    }
+    .post-image-card {
+        width: 100%;
+    }
+}

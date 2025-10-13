@@ -1,0 +1,35 @@
+/* Existing styles remain untouched */
+
+/* Responsive adjustments for mobile devices */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px; /* give some spacing from edges */
+        height: auto; /* let container grow naturally */
+        align-items: flex-start; /* align form slightly from top */
+    }
+
+    .form-box {
+        width: 100%; /* take full width on small screens */
+        max-width: 350px; /* optional: limit max width */
+        padding: 25px; /* reduce padding for mobile */
+        box-sizing: border-box;
+    }
+
+    .form-box h2 {
+        font-size: 1.5rem; /* slightly smaller heading */
+    }
+
+    .form-control {
+        font-size: 0.9rem; /* smaller input text */
+        padding: 8px 10px;
+    }
+
+    .btn-confirm {
+        font-size: 0.9rem; /* smaller button text */
+        padding: 10px;
+    }
+
+    .redirect-text, .form-box a {
+        font-size: 0.85rem; /* smaller links and text */
+    }
+}
